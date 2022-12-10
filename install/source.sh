@@ -1,1 +1,0 @@
-source /opt/ros/foxy/setup.bash
