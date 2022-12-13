@@ -3,17 +3,12 @@
 This is our new sub utilities repo for the software rewrite.
 
 ## Installation
-The first step in installation is to install ros2.
+The first step in installation is to install the instance.
 
-```$ sh install/install_ros2.sh```
+```$ bash scripts/install_core.sh```
 
 ### Simulation
 If you want to simulate the sub, run
-```sh
-$ sh install/install_sim_pt1.sh
-```
-Then log out and log back in.
-Then run
-```sh
-$ sh install/install_sim_pt2.sh
+```bash
+bash scripts/run_sim.sh
 ```
