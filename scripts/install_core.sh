@@ -34,14 +34,14 @@ source ~/.bashrc
 
 sudo apt install -y python3-colcon-common-extensions
 sudo apt install -y ros-foxy-eigen3-cmake-module
-sudo pip3 install -U empy pyros-genmsg setuptools
+sudo pip3 install -U empy pyros-genmsg setuptools==58.2.0
 sudo apt install -y ros-foxy-gazebo-ros-pkgs
 
 git clone https://github.com/PX4/px4_ros_com.git $dir/src/px4_ros_com
 git clone https://github.com/PX4/px4_msgs.git $dir/src/px4_msgs
 
 echo $dir
-
+sudo apt install -y xterm
 xterm -e "cd ~/sub_utilities_2/src/px4_ros_com/scripts && source build_ros2_workspace.bash"
 cd $dir
 
@@ -50,4 +50,19 @@ echo $dir
 echo "source ~/sub_utilities_2/install/setup.bash" >> ~/.bashrc
 
 
+sudo pip3 install -U rosinstall vcstools rospkg rosdep
+cd ~
+mkdir ~/microros_ws
+cd microros_ws
+git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro_ros_setup.git
+mkdir src
+mv micro_ros_setup/ src/
+colcon build
+source install/local_setup.sh
+sudo rosdep init
+rosdep update
+ros2 run micro_ros_setup create_agent_ws.sh
+ros2 run micro_ros_setup build_agent.sh
+
+cd $dir
 echo $dir

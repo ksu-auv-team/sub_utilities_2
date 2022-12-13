@@ -1,13 +1,9 @@
 #!/bin/bash
-cwd=$(pwd)
+cwd=~/sub_utilities_2
 cd $cwd
 source ~/.bashrc
-cd ~/PX4-Autopilot
-python3 msg/tools/uorb_to_ros_msgs.py msg/ px4_msgs/msg/
-mv $cwd/src/px4_msgs/msg $cwd/src/px4_msgs/msg-bk
-mv px4_msgs/msg $cwd/src/px4_msgs/
-cd $cwd
-rm -rf build/ install/ log/
-colcon build
-source install/setup.bash
-micrortps_agent -t UDP
+cd ~/microros_ws
+source install/local_setup.sh
+export ROS_DOMAIN_ID=0
+export PYTHONOPTIMIZE=1
+ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888 ROS_DOMAIN_ID=0

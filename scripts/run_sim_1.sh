@@ -1,11 +1,6 @@
 #!/bin/bash
 cwd=$(pwd)
-cd $cwd
-cd ..
 cd ~/PX4-Autopilot
-source ~/.bashrc
-make clean
-rm -rf build
-make
-make px4_sitl_rtps
-make px4_sitl_rtps gazebo_uuv_hippocampus
+export ROS_DOMAIN_ID=0
+export PYTHONOPTIMIZE=1
+HEADLESS=1 make px4_sitl gazebo_uuv_hippocampus

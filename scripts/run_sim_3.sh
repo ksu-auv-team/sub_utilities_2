@@ -1,6 +1,7 @@
 #!/bin/bash
-cwd=$(pwd)
+cwd=~/sub_utilities_2
 cd $cwd
-source ~/.bashrc
-source install/setup.bash
-ros2 run px4_ros_com offboard_control
+if [ ! -d $cwd/ground ]; then
+    bash scripts/install_groundstation.sh
+fi
+bash scripts/run_groundstation.sh
